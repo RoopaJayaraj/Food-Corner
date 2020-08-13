@@ -1,0 +1,7 @@
+{% extends 'order/index.html' %} 
+{% block content %}
+<h2>Hello from menu</h2>
+{% for item in items %}
+    {{item.item_name}}
+{% endfor %}
+{% endblock %}
