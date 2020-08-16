@@ -7,3 +7,6 @@ def index(request):
     context={'items':item}
     
     return render(request, "order/menu.html", context)
+
+def layout(request):
+    return render(request, 'order/layout.html')

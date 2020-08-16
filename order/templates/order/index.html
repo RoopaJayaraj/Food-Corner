@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,12 +17,26 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="#">Features</a>
-          <a class="nav-item nav-link" href="#">Pricing</a>
+          <a class="nav-item nav-link" href="#">Menu</a>
+          <a class="nav-item nav-link" href="#">Cart</a>
+          <a class="nav-item nav-link" href="#">My Orders</a>
+        </div>
+
+        <div class="navbar-nav float-left">
+          <a class="nav-item nav-link active" href="#">Logout <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="#">Login</a>
+          <a class="nav-item nav-link" href="#">Register</a>
         </div>
       </div>
     </nav></div>
     <div class="container">
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+        {{message}}
+        </div>
+      {% endfor %}
+      {% endif %}
     {% block content %} {% endblock %}
   </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

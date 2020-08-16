@@ -1,7 +1,23 @@
-{% extends 'order/index.html' %} 
+{% extends 'order/layout.html' %} 
+
 {% block content %}
-<h2>Hello from menu</h2>
-{% for item in items %}
-    {{item.item_name}}
-{% endfor %}
+<div class="container pt-3">
+    <div class="row">
+        {% for item in items %}
+        <div class="col-md-12 col-lg-6">
+            <div class="sided-220x responsive mb-30 left-text center-sm-text">
+                <div class="row">
+                    <h5>{{item.item_name}}</h5>
+                    <h4 class="mtb-10 pl-5"><b >${{ item.price }}</b></h4>
+                </div>
+                <p>{{ item.description }} </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+</div>
+    
+
 {% endblock %}

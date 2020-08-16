@@ -1,0 +1,12 @@
+.common-section{
+    background-color: #ffffff;
+    padding: 10px 10px;
+    margin-left: 5rem;
+    margin-top: 5rem;
+    justify-content : center;
+    /* display: flex; */
+  align-items: center;
+  /* border: 1px solid #dddddd;
+  border-radius: 3px; */
+  width: 50%;
+}
