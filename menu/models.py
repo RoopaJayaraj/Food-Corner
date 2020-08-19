@@ -18,4 +18,4 @@ class Item(models.Model):
         max_digits=4, decimal_places=2, blank=True, default=0.00)
     availability = models.BooleanField(default=True)
     description = models.TextField(blank=True)
-    item_img = models.ImageField(upload_to = 'images/')
+    item_img = models.ImageField(upload_to = 'images/', blank=True)

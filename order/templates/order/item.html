@@ -1,0 +1,30 @@
+{% extends 'order/layout.html' %} 
+
+{% block content %}
+<div class="container item-section col-lg-6">
+    <div class="media">
+        <img class= "rounded-circle account-img"  src="{{ item.item_img.url }}" alt="Menu Image">
+         <div class="media-body">
+                <h3>{{item.item_name}}</h3>
+                 <h5 class="mtb-10 pl-5"><b >${{ item.price }}</b></h5>
+             <p>{{ item.description }} </p>
+         </div>
+         
+    </div> 
+    <div>
+       <form action=" {% url 'add_item' item.id %}" method="POST">
+        {% csrf_token %}
+            <div class="form-group quantity-setter">
+                <label>Quantity:</label>
+                    <input type="number" min ="0" id="quantity" value="0" name="quantity"/>
+            </div> 
+        <div>
+            <button type="submit" class="btn btn-warning pull-left">
+                Add Item to Cart
+            </button>
+        </div>            
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

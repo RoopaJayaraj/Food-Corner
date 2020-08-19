@@ -1,0 +1,38 @@
+{% extends 'order/layout.html' %}
+
+{% block content %}
+<div class=" col-sm-6  ">
+    <table class="table ">
+        <tr>
+            <td colspan="2"><h2>Order Summary</h2></td>
+        </tr>
+        <tr>
+            <td>
+                {% for item in cart_items %}
+                    <tr>
+                        <td>{{ item.item_name}} </td>
+                        <td>${{ item.total }}</td>
+                    </tr>
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            {% if cart_items %}
+                <td>
+                    <strong class="pull-right">Order Total:</strong>
+                </td>
+                <td>
+                    $<strong>{{ order_total }}</strong>
+                </td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td colspan="2">
+                {% if cart_items %}
+                    <a  href="{% url 'placeOrder'  %}" class="pull-right btn btn-success">Place Order</a>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

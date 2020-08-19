@@ -1,23 +1,24 @@
 {% extends 'order/layout.html' %} 
 
 {% block content %}
-<div class="container pt-3">
+<div class="container menu-section">
     <div class="row">
         {% for item in items %}
         <div class="col-md-12 col-lg-6">
-            <div class="sided-220x responsive mb-30 left-text center-sm-text">
-                <div class="row">
-                    <h5>{{item.item_name}}</h5>
-                    <h4 class="mtb-10 pl-5"><b >${{ item.price }}</b></h4>
+            <div class="media">
+               <img class= "rounded-circle account-img"  src="{{ item.item_img.url }}" alt="Menu Image">
+                <div class="media-body">
+                    <div class="row">
+                        <a href="{% url 'get_item' item.id %}"> <h5>{{item.item_name}}</h5></a>
+                        <h6 class="mtb-10 pl-5"><b >${{ item.price }}</b></h6>
+                    </div>
+                    <p>{{ item.description }} </p>
                 </div>
-                <p>{{ item.description }} </p>
             </div>
         </div>
         {% endfor %}
     </div>
-
-
 </div>
     
 
-{% endblock %}
+{% endblock content %}

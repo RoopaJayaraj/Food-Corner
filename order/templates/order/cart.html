@@ -1,0 +1,60 @@
+{% extends 'order/layout.html' %}
+
+{% block content %}
+
+<div class="container pt-5 mt-3">
+    <table class="table table-hover table-bordered text-center" id="cart_table">
+        <tr class="text-center">
+            
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+        </tr>
+        {% for item in cart_items %}
+            <tr>
+                
+                <td>
+                    {{ item.item_name }}   ${{ item.price}}
+                    <span class="float-right">
+                        <a href="{% url 'delete' item.id %}" data-balloon="Remove this item from cart" 
+                            class="text-danger" onclick="return confirm_delete();">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </span>
+                </td> 
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.total }}</td>
+            </tr>
+            
+        {% empty %}
+            <tr>
+                <td colspan="3"> You have not added any items yet.</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            {% if cart_items %}
+               <td colspan="2">
+                   <strong class="pull-right">Order Total:</strong>
+               </td>
+               <td colspan="1">
+                   $<strong id="total">{{ order_total}}</strong>
+               </td>
+           {% endif %} 
+       </tr>
+        
+        <tr>
+            <td colspan="1">
+                <a href="{% url 'menu' 0 %}" class="btn btn-warning pull-left">
+                {% if cart_items %}Continue Shopping{% else %}Add Items to Cart {% endif %}
+                </a>
+            </td>
+            <td colspan="2">
+                {% if cart_items %}
+                    <a  href="{% url 'checkout'  %}" class="pull-right btn btn-success">Proceed To Checkout</a>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+</div>
+
+{% endblock %}

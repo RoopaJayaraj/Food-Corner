@@ -14,14 +14,14 @@
   {% else %}
   <title>Food Corner</title>
   {% endif %}
-  
 
   <!-- Bootstrap core CSS -->
   <link href="../../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
   <!-- Custom styles for this template -->
   <link href="../../static/css/simple-sidebar.css" rel="stylesheet">
   <link href="../../static/css/main.css" rel="stylesheet">
+
 
 </head>
 
@@ -33,9 +33,9 @@
     <div class="bg-light border-right mt-5" id="sidebar-wrapper">
       <div class="sidebar-heading">Our Menu </div>
       <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light">All</a>
+        <a href="{% url 'menu' 0 %}" class="list-group-item list-group-item-action bg-light">All</a>
         {% for item in category %}
-        <a href="#" class="list-group-item list-group-item-action bg-light">{{item.category_name}}</a>
+        <a href="{% url 'menu'  item.id %}" class="list-group-item list-group-item-action bg-light">{{item.category_name}}</a>
         {% endfor %}
         
       </div>
@@ -57,8 +57,13 @@
             <li class="nav-item active">
               <a class="nav-link" href="{% url 'home' %}">Food Corner <span class="sr-only">(current)</span></a>
             </li>
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a href="#" class="nav-link"> Hello {{request.user.username}}</a>
+              </li>
+
             <li class="nav-item">
-              <a class="nav-link" href="#">Cart</a>
+              <a class="nav-link" href="{% url 'show_cart' %}"><i class="fas fa-cart-arrow-down"></i>Cart</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'profile' %}">My Orders</a>
@@ -66,13 +71,14 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'logout' %}">Logout</a>
             </li>
+            {% else %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'login' %}">Login</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'register' %}">Register</a>
             </li>
-            
+            {% endif %}
           </ul>
         </div>
       </nav>
@@ -96,6 +102,10 @@
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+
+    function confirm_delete() {
+            return confirm("Do you want to remove this item from cart?");
+    }
   </script>
 
 </body>
